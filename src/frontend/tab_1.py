@@ -7,9 +7,10 @@ from config import db_credentials, long_chart_names
 
 def tab_1():
     start_date_year_options = return_list_of_years_in_db()
-    start_date_month_options = return_list_of_years_in_db()
+    start_date_month_options = []
+
     end_date_year_options = return_list_of_years_in_db()
-    end_date_month_options = return_list_of_years_in_db()
+    end_date_month_options = []
 
     additional_options = [
         {'label': 'Przeliczaj na miesiąc', 'value': 'calc_per_month'},
@@ -46,7 +47,7 @@ def tab_1():
 
         html.Div(["Dodatkowe ustawienia:",
                   dcc.Checklist(id="1_additional_settings", options=additional_options,
-                                labelStyle={'display': 'block'})],
+                                labelStyle={'display': 'block'}, value=['subtract_pit'])],
                  style={"width": "20vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "60vw", "grid-row-gap": "14px",
                         "top": "8vh", "position": "absolute"}
@@ -58,17 +59,16 @@ def tab_1():
         html.Div(["Grupa wykresów:",
                   dcc.Dropdown(id="1_plot_type_1", placeholder="", options=[
                       {'label': name, 'value': name} for name in chart_groups_names])],
-                 style={"width": "10vw", "font-family": "Cambria",
-                        "font-size": "18px", "height": "10vh",
-                        "display": "grid", "left": "2vw",
-                        "grid-row-gap": "14px", "top": "25vh",
-                        "position": "absolute"}),
+                 style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
+                        "height": "10vh", "display": "grid", "left": "2vw",
+                        "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
         html.Div(["Wykres:",
                   dcc.Dropdown(id="1_plot_name_1", placeholder="", options=[
                       {'label': opt, 'value': opt} for opt in specific_charts_names])],
                  style={"width": "25vw", "font-family": "Cambria", "font-size": "18px",
-                        "height": "10vh", "display": "grid", "left": "15vw", "grid-row-gap": "14px",
-                        "top": "25vh", "position": "absolute"}),
+                        "height": "10vh", "display": "grid", "left": "15vw",
+                        "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
+
         dcc.Graph(id="1_plot_1", style={"position": "absolute", "top": "40vh", "width": "40vw",
                                         "height": "60vh", "left": "2vw"}),
 
@@ -84,6 +84,7 @@ def tab_1():
                  style={"width": "25vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "65vw",
                         "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
+
         dcc.Graph(id="2_plot_2", style={"position": "absolute", "top": "40vh", "width": "40vw",
                                         "height": "60vh", "left": "52vw"})
     ]
