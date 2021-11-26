@@ -5,8 +5,8 @@ from dash.dependencies import Input, Output, State, ALL
 from layout import layout
 # from config import dash_auth_password
 from utl.db import return_list_of_months_for_given_year
-from utl.general_functions import (generate_end_years_list_based_on_start_date,
-                                   generate_end_months_list_based_on_start_date_and_end_year)
+from utl.dates_handling import (generate_end_years_list_based_on_start_date,
+                                generate_end_months_list_based_on_start_date_and_end_year)
 
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
@@ -46,6 +46,20 @@ def set_end_months_list_based_on_start_date_and_end_year(start_year, start_month
     all_possible_end_months = generate_end_months_list_based_on_start_date_and_end_year(
         start_year, start_month, end_year)
     return [{"label": str(month), "value": month} for month in all_possible_end_months]
+
+
+
+@app.callback(
+    [Output("1_start_date_year_dropdown", "options"),
+     Output("1_start_date_year_dropdown", "value")],
+    
+     Input("1_set_whole_time_range", "value")
+)
+def set_whole_time_range(checkbox_value):
+    if checkbox_value == ["whole_time_range"]:
+        return [{"label": '2030', "value": '2030'}], '2030'
+    else:
+        return [], ''
 
 # ===============================================================================================
 
