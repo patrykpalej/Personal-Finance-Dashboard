@@ -1,20 +1,24 @@
 from dash import dcc
 from dash import html
 
-from utl.db import return_list_of_years_in_db
-from config import db_credentials, long_chart_names
+from utl.db import return_list_of_unique_years_in_db
+from config import long_chart_names
 
 
 def tab_1():
-    start_date_year_options = return_list_of_years_in_db()
+    unique_years_in_db = return_list_of_unique_years_in_db()
+    start_date_year_options = [{"label": str(year), "value": year} for year in unique_years_in_db]
+
     start_date_month_options = []
 
-    end_date_year_options = return_list_of_years_in_db()
+    end_date_year_options = []  # return_list_of_years_in_db()
     end_date_month_options = []
 
     additional_options = [
         {'label': 'Przeliczaj na miesiąc', 'value': 'calc_per_month'},
         {'label': 'Wartość po odjęciu PIT (dla faktur)', 'value': 'subtract_pit'}]
+
+    set_time_range_options = [{"label": "Wybierz cały zakres czasu", "value": "whole_time_range"}]
 
     chart_groups_names = list(long_chart_names.keys())
     specific_charts_names = long_chart_names[chart_groups_names[0]]
@@ -44,6 +48,13 @@ def tab_1():
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "22vw", "top": "8vh",
                         "grid-row-gap": "14px", "position": "absolute"}),
+
+        html.Div([dcc.Checklist(id="1_set_whole_time_range", options=set_time_range_options,
+                                labelStyle={'display': 'block'})],
+                 style={"width": "20vw", "font-family": "Cambria", "font-size": "18px",
+                        "height": "10vh", "display": "grid", "left": "35vw", "grid-row-gap": "14px",
+                        "top": "17vh", "position": "absolute"}
+                 ),
 
         html.Div(["Dodatkowe ustawienia:",
                   dcc.Checklist(id="1_additional_settings", options=additional_options,
