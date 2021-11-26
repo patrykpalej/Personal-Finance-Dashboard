@@ -1,6 +1,21 @@
+import psycopg2
 import pandas as pd
 from config import db_credentials
-from dbutl.make_connection import make_connection
+
+
+def make_connection(credentials: dict):
+    """
+    Creates psycopg2.Connection object based on credentials dictionary
+    Parameters
+    ----------
+    credentials: dict
+    """
+    try:
+        conn = psycopg2.connect(**credentials)
+        return conn
+    except Exception as e:
+        print(e)
+        return None
 
 
 def return_list_of_unique_years_in_db():

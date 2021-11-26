@@ -19,16 +19,16 @@ def tab_1():
     tab_layout = [
         # General settings
         html.Div(["Pierwszy miesiąc:",
-                  dcc.Dropdown(id="1_start_date_year_dropdown", value="", placeholder="rok"),
-                  dcc.Dropdown(id="1_start_date_month_dropdown", value="", placeholder="miesiąc")],
+                  dcc.Dropdown(id="1_start_year_dropdown", value="", placeholder="rok"),
+                  dcc.Dropdown(id="1_start_month_dropdown", value="", placeholder="miesiąc")],
 
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "2vw", "top": "8vh",
                         "grid-row-gap": "14px", "position": "absolute"}),
 
         html.Div(["Ostatni miesiąc:",
-                  dcc.Dropdown(id="1_end_date_year_dropdown", value="", placeholder="rok"),
-                  dcc.Dropdown(id="1_end_date_month_dropdown", value="", placeholder="miesiąc")],
+                  dcc.Dropdown(id="1_end_year_dropdown", value="", placeholder="rok"),
+                  dcc.Dropdown(id="1_end_month_dropdown", value="", placeholder="miesiąc")],
 
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "22vw", "top": "8vh",
@@ -53,13 +53,13 @@ def tab_1():
 
         # Charts
         html.Div(["Grupa wykresów:",
-                  dcc.Dropdown(id="1_plot_type_1", placeholder="", options=[
+                  dcc.Dropdown(id="1_plot_types_1", placeholder="", options=[
                       {'label': name, 'value': name} for name in chart_groups_names])],
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "2vw",
                         "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
         html.Div(["Wykres:",
-                  dcc.Dropdown(id="1_plot_name_1", placeholder="", options=[
+                  dcc.Dropdown(id="1_plot_names_1", placeholder="", options=[
                       {'label': opt, 'value': opt} for opt in specific_charts_names])],
                  style={"width": "25vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "15vw",
@@ -69,19 +69,19 @@ def tab_1():
                                         "height": "60vh", "left": "2vw"}),
 
         html.Div(["Grupa wykresów:",
-                  dcc.Dropdown(id="2_plot_type_2", value="", placeholder="", options=[
+                  dcc.Dropdown(id="1_plot_types_2", value="", placeholder="", options=[
                       {'label': name, 'value': name} for name in chart_groups_names])],
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "52vw",
                         "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
         html.Div(["Wykres:",
-                  dcc.Dropdown(id="2_plot_name_2", value="", placeholder="", options=[
+                  dcc.Dropdown(id="1_plot_names_2", value="", placeholder="", options=[
                       {'label': opt, 'value': opt} for opt in specific_charts_names])],
                  style={"width": "25vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "65vw",
                         "grid-row-gap": "14px", "top": "25vh", "position": "absolute"}),
 
-        dcc.Graph(id="2_plot_2", style={"position": "absolute", "top": "40vh", "width": "40vw",
+        dcc.Graph(id="1_plot_2", style={"position": "absolute", "top": "40vh", "width": "40vw",
                                         "height": "60vh", "left": "52vw"})
     ]
 

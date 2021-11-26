@@ -8,8 +8,8 @@ from utl.dates_handling import (generate_end_years_list_based_on_start_date,
 
 
 @app.callback(
-    [Output("1_start_date_year_dropdown", "options"),
-     Output("1_start_date_year_dropdown", "value")],
+    [Output("1_start_year_dropdown", "options"),
+     Output("1_start_year_dropdown", "value")],
 
     Input("1_set_whole_time_range", "value")
 )
@@ -25,10 +25,10 @@ def set_start_years_list(checkbox_value):
 
 
 @app.callback(
-    [Output("1_start_date_month_dropdown", "options"),
-     Output("1_start_date_month_dropdown", "value")],
+    [Output("1_start_month_dropdown", "options"),
+     Output("1_start_month_dropdown", "value")],
 
-    [Input("1_start_date_year_dropdown", "value"),
+    [Input("1_start_year_dropdown", "value"),
      Input("1_set_whole_time_range", "value")]
 )
 def set_start_months_list_based_on_start_year(start_year, checkbox_value):
@@ -42,11 +42,11 @@ def set_start_months_list_based_on_start_year(start_year, checkbox_value):
 
 
 @app.callback(
-    [Output("1_end_date_year_dropdown", "options"),
-     Output("1_end_date_year_dropdown", "value")],
+    [Output("1_end_year_dropdown", "options"),
+     Output("1_end_year_dropdown", "value")],
 
-    [Input("1_start_date_year_dropdown", "value"),
-     Input("1_start_date_month_dropdown", "value"),
+    [Input("1_start_year_dropdown", "value"),
+     Input("1_start_month_dropdown", "value"),
      Input("1_set_whole_time_range", "value")]
 )
 def set_end_years_list_based_on_start_date(start_year, start_month, checkbox_value):
@@ -60,12 +60,12 @@ def set_end_years_list_based_on_start_date(start_year, start_month, checkbox_val
 
 
 @app.callback(
-    [Output("1_end_date_month_dropdown", "options"),
-     Output("1_end_date_month_dropdown", "value")],
+    [Output("1_end_month_dropdown", "options"),
+     Output("1_end_month_dropdown", "value")],
 
-    [Input("1_start_date_year_dropdown", "value"),
-     Input("1_start_date_month_dropdown", "value"),
-     Input("1_end_date_year_dropdown", "value"),
+    [Input("1_start_year_dropdown", "value"),
+     Input("1_start_month_dropdown", "value"),
+     Input("1_end_year_dropdown", "value"),
      Input("1_set_whole_time_range", "value")]
 )
 def set_end_months_list_based_on_start_date_and_end_year(
