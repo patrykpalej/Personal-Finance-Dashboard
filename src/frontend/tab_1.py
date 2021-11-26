@@ -1,19 +1,10 @@
 from dash import dcc
 from dash import html
 
-from utl.db import return_list_of_unique_years_in_db
 from config import long_chart_names
 
 
 def tab_1():
-    unique_years_in_db = return_list_of_unique_years_in_db()
-    start_date_year_options = [{"label": str(year), "value": year} for year in unique_years_in_db]
-
-    start_date_month_options = []
-
-    end_date_year_options = []  # return_list_of_years_in_db()
-    end_date_month_options = []
-
     additional_options = [
         {'label': 'Przeliczaj na miesiąc', 'value': 'calc_per_month'},
         {'label': 'Wartość po odjęciu PIT (dla faktur)', 'value': 'subtract_pit'}]
@@ -28,22 +19,16 @@ def tab_1():
     tab_layout = [
         # General settings
         html.Div(["Pierwszy miesiąc:",
-                  dcc.Dropdown(id="1_start_date_year_dropdown", value="", placeholder="rok",
-                               options=start_date_year_options),
-
-                  dcc.Dropdown(id="1_start_date_month_dropdown", value="", placeholder="miesiąc",
-                               options=start_date_month_options)],
+                  dcc.Dropdown(id="1_start_date_year_dropdown", value="", placeholder="rok"),
+                  dcc.Dropdown(id="1_start_date_month_dropdown", value="", placeholder="miesiąc")],
 
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "2vw", "top": "8vh",
                         "grid-row-gap": "14px", "position": "absolute"}),
 
         html.Div(["Ostatni miesiąc:",
-                  dcc.Dropdown(id="1_end_date_year_dropdown", value="", placeholder="rok",
-                               options=end_date_year_options),
-                  dcc.Dropdown(id="1_end_date_month_dropdown", value="", placeholder="miesiąc",
-                               options=end_date_month_options)
-                  ],
+                  dcc.Dropdown(id="1_end_date_year_dropdown", value="", placeholder="rok"),
+                  dcc.Dropdown(id="1_end_date_month_dropdown", value="", placeholder="miesiąc")],
 
                  style={"width": "10vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "22vw", "top": "8vh",
