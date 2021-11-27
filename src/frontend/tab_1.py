@@ -7,7 +7,7 @@ from config import long_chart_names
 def tab_1():
     additional_options = [
         {'label': 'Przeliczaj na miesiąc', 'value': 'calc_per_month'},
-        {'label': 'Wartość po odjęciu PIT (dla faktur)', 'value': 'subtract_pit'}]
+        {'label': 'Wartości po odjęciu podatków (dla faktur)', 'value': 'subtract_tax'}]
 
     set_time_range_options = [{"label": "Wybierz cały zakres czasu", "value": "whole_time_range"}]
 
@@ -43,7 +43,7 @@ def tab_1():
 
         html.Div(["Dodatkowe ustawienia:",
                   dcc.Checklist(id="1_additional_settings", options=additional_options,
-                                labelStyle={'display': 'block'}, value=['subtract_pit'])],
+                                labelStyle={'display': 'block'}, value=['subtract_tax'])],
                  style={"width": "20vw", "font-family": "Cambria", "font-size": "18px",
                         "height": "10vh", "display": "grid", "left": "60vw", "grid-row-gap": "14px",
                         "top": "8vh", "position": "absolute"}

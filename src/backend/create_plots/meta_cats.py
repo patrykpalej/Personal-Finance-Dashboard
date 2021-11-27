@@ -1,0 +1,28 @@
+from utl.plots.make_lineplot import lineplot
+from utl.db import select_data_from_time_range_for_given_table as get_data
+
+
+def meta_cats(start_date, end_date, _):
+    spendings_raw = get_data("HOME_SPENDINGS", start_date, end_date)
+    spendings = spendings_raw.groupby(["METACATEGORY", "DATE"]).sum()["VALUE"]
+
+    metacategories = list(spendings.index.levels[0].unique())
+
+    x_values_list = []
+    y_values_list = []
+    names_list = []
+    modes_list = []
+    linestyles_list = []
+    x_labels = None
+    x_tickvals = None
+    ylims = None
+
+    for meta in metacategories:
+        x_values_list.append(list(spendings[meta].index))
+        y_values_list.append(list(spendings[meta].values))
+        names_list.append(meta)
+        modes_list.append("lines+markers")
+        linestyles_list.append("solid")
+
+    return lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list,
+                    x_labels, x_tickvals, ylims)

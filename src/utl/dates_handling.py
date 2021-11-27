@@ -28,3 +28,12 @@ def generate_end_months_list_based_on_start_date_and_end_year(
 
     return [month for month in all_months_for_end_year
             if start_date_set_in_dash <= date(end_year_set_in_dash, month, 1)]
+
+
+def calculate_n_of_uniuqe_months_based_on_range(list_of_all_dates):
+    """
+    Takes a list (series, tuple, etc.) of date objects.
+    Returns number of months between start date and end date
+    """
+    start_date, end_date = min(list_of_all_dates), max(list_of_all_dates)
+    return (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month) + 1
