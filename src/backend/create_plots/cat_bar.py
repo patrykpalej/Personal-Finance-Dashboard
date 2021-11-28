@@ -1,4 +1,4 @@
-from utl.plots.make_barplot import barplot
+from utl.plots.barplot import make_barplot
 from utl.db import select_data_from_time_range_for_given_table as get_data
 from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
@@ -17,4 +17,4 @@ def cat_bar(start_date, end_date, additional_settings):
     x_label = "Wartość"
     y_label = "Kategoria"
 
-    return barplot(x, y, x_label, y_label)
+    return make_barplot(x, y, x_label, y_label)

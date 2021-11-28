@@ -1,4 +1,4 @@
-from utl.plots.make_pieplot import pieplot
+from utl.plots.pieplot import make_pieplot
 from utl.db import select_data_from_time_range_for_given_table as get_data
 from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
@@ -24,4 +24,4 @@ def food_pie(start_date, end_date, additional_settings):
         n_of_months = calculate_n_of_uniuqe_months_based_on_range(spendings_raw["DATE"])
         values = [round(item / n_of_months, 2) for item in values]
 
-    return pieplot(labels, values)
+    return make_pieplot(labels, values)

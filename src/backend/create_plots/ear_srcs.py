@@ -1,4 +1,4 @@
-from utl.plots.make_lineplot import lineplot
+from utl.plots.lineplot import make_lineplot
 from utl.taxes_handling import subtract_taxes_from_earnings
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
@@ -37,4 +37,4 @@ def ear_srcs(start_date, end_date, additional_settings):
     modes_list = ["lines+markers"] * len(sources_labels)
     linestyles_list = ["solid"] * len(sources_labels)
 
-    return lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list)
+    return make_lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list)

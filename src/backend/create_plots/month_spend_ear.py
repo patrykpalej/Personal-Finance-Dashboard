@@ -1,4 +1,4 @@
-from utl.plots.make_lineplot import lineplot
+from utl.plots.lineplot import make_lineplot
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
@@ -20,4 +20,4 @@ def month_spend_ear(start_date, end_date, additional_settings):
     modes_list = ["lines+markers"] * 2
     linestyles_list = ["solid"] * 2
 
-    return lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list)
+    return make_lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list)

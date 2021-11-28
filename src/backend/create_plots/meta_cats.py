@@ -1,4 +1,4 @@
-from utl.plots.make_lineplot import lineplot
+from utl.plots.lineplot import make_lineplot
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
@@ -24,5 +24,5 @@ def meta_cats(start_date, end_date, _):
         modes_list.append("lines+markers")
         linestyles_list.append("solid")
 
-    return lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list,
-                    x_labels, x_tickvals, ylims)
+    return make_lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list,
+                         x_labels, x_tickvals, ylims)

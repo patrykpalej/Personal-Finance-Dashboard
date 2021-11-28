@@ -1,4 +1,4 @@
-from utl.plots.make_pieplot import pieplot
+from utl.plots.pieplot import make_pieplot
 from utl.db import select_data_from_time_range_for_given_table
 
 

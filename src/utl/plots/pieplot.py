@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 
 
-def pieplot(labels, values):
+def make_pieplot(labels, values):
     fig = go.Figure()
 
     plot = go.Pie(labels=labels, values=[round(v, 2) for v in values])

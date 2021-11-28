@@ -1,8 +1,8 @@
 import plotly.graph_objects as go
 
 
-def lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list, x_labels=None,
-             x_tickvals=None, ylims=None):
+def make_lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list, x_labels=None,
+                  x_tickvals=None, ylims=None):
     fig = go.Figure()
 
     for x, y, name, mode, linestyle in zip(x_values_list, y_values_list, names_list, modes_list,

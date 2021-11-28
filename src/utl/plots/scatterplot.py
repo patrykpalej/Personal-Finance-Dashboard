@@ -2,7 +2,7 @@ import numpy as np
 import plotly.graph_objects as go
 
 
-def scatterplot(x, y, point_labels, xlabel, ylabel, add_trend_line=True, add_y_equals_x=True):
+def make_scatterplot(x, y, point_labels, xlabel, ylabel, add_trend_line=True, add_y_equals_x=True):
     fig = go.Figure()
     plot = go.Scatter(x=x, y=y, mode='markers', name="Dane", text=point_labels)
     fig.add_trace(plot)

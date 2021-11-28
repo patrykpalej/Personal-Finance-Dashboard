@@ -1,4 +1,4 @@
-from utl.plots.make_pieplot import pieplot
+from utl.plots.pieplot import make_pieplot
 from utl.taxes_handling import subtract_taxes_from_earnings
 from utl.db import select_data_from_time_range_for_given_table as get_data
 from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
@@ -30,4 +30,4 @@ def ear_pie(start_date, end_date, additional_settings):
             values.append(round(sum(top_earnings[i:]), 2))
             break
 
-    return pieplot(labels, values)
+    return make_pieplot(labels, values)

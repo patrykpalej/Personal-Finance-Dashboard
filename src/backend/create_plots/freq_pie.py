@@ -1,4 +1,4 @@
-from utl.plots.make_pieplot import pieplot
+from utl.plots.pieplot import make_pieplot
 from utl.db import select_data_from_time_range_for_given_table as get_data
 from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
@@ -19,4 +19,4 @@ def freq_pie(start_date, end_date, additional_settings):
         values = ([round(item, 2) for item in spendings[:n_of_main_categories]]
                   + [round(sum(spendings[n_of_main_categories:]), 2)])
 
-    return pieplot(labels, values)
+    return make_pieplot(labels, values)

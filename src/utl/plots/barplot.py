@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 
 
-def barplot(x, y, x_label, y_label, orientation='h'):
+def make_barplot(x, y, x_label, y_label, orientation='h'):
     fig = go.Figure()
 
     plot = go.Bar(x=x, y=y, orientation=orientation)
