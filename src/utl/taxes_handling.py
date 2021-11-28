@@ -8,8 +8,11 @@ def subtract_taxes_from_earnings(earnings, taxes):
     """
     earnings_minus_taxes = earnings.copy()
 
-    for date_ in taxes["DATE"]:
-        monthly_earnings = earnings[date_]
+    for date_ in taxes.index:
+        try:
+            monthly_earnings = earnings[date_]
+        except KeyError:
+            continue
 
         taxed_earnings = dict()
         for source, value in monthly_earnings.iteritems():
@@ -17,7 +20,7 @@ def subtract_taxes_from_earnings(earnings, taxes):
                 taxed_earnings[source] = value
 
         if taxed_earnings:
-            tax_info = taxes[taxes["DATE"] == date_][["PIT", "ZUS", "VAT"]]
+            tax_info = taxes[taxes.index == date_][["PIT", "ZUS", "VAT"]]
             total_tax_per_month = float(tax_info["PIT"] + tax_info["ZUS"] - tax_info["VAT"])
 
             for source, earning in taxed_earnings.items():

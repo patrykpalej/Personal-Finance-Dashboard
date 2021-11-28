@@ -9,7 +9,7 @@ def ear_pie(start_date, end_date, additional_settings):
     earnings = earnings_raw.groupby(["DATE", "SOURCE"]).sum()["VALUE"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date)
+        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
         earnings_minus_taxes = subtract_taxes_from_earnings(earnings, taxes)
         top_earnings = earnings_minus_taxes.groupby("SOURCE").sum().sort_values(ascending=False)
     else:

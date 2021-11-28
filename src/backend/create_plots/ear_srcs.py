@@ -8,7 +8,7 @@ def ear_srcs(start_date, end_date, additional_settings):
     earnings = earnings_raw.groupby(["DATE", "SOURCE"]).sum()["VALUE"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date)
+        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
         earnings = subtract_taxes_from_earnings(earnings, taxes)
 
     ordered_sources = earnings_raw.groupby("SOURCE").sum()["VALUE"].sort_values(ascending=False)
