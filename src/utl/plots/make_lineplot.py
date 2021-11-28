@@ -1,8 +1,8 @@
 import plotly.graph_objects as go
 
 
-def lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list, x_labels,
-             x_tickvals, ylims):
+def lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_list, x_labels=None,
+             x_tickvals=None, ylims=None):
     fig = go.Figure()
 
     for x, y, name, mode, linestyle in zip(x_values_list, y_values_list, names_list, modes_list,
@@ -15,15 +15,3 @@ def lineplot(x_values_list, y_values_list, names_list, modes_list, linestyles_li
                       legend={"orientation": "h", "yanchor": "bottom", "y": 1.02,
                               "xanchor": "right", "x": 1})
     return fig
-
-
-# if len(x_labels) > 24:
-    #     factor = round(len(x_labels) / 12)
-    #     tickvals = list(range(len(x_labels)))[::factor]
-    #     x_labels = x_labels[::factor]
-    #
-    # else:
-    #     tickvals = list(range(len(x_labels)))
-    #
-    # y_min_lim = min(0, 1.1 * float(min([min([val for val in x if val > 0]) for x in values_list])))
-    # y_max_lim = 1.1 * float(max([n for n in [max([val for val in x if val > 0]) for x in values_list] if n > 0]))

@@ -1,5 +1,5 @@
 from utl.plots.make_pieplot import pieplot
-from utl.calculations import subtract_taxes_from_earnings
+from utl.taxes_handling import subtract_taxes_from_earnings
 from utl.db import select_data_from_time_range_for_given_table as get_data
 from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
@@ -7,9 +7,9 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 def ear_pie(start_date, end_date, additional_settings):
     earnings_raw = get_data("HOME_EARNINGS", start_date, end_date)
     earnings = earnings_raw.groupby(["DATE", "SOURCE"]).sum()["VALUE"]
-    taxes = get_data("HOME_TAXES", start_date, end_date)
 
     if "subtract_tax" in additional_settings:
+        taxes = get_data("HOME_TAXES", start_date, end_date)
         earnings_minus_taxes = subtract_taxes_from_earnings(earnings, taxes)
         top_earnings = earnings_minus_taxes.groupby("SOURCE").sum().sort_values(ascending=False)
     else:
