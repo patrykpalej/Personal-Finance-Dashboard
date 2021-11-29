@@ -1,10 +1,6 @@
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
-def prepare_stats_table_dates_range(start_date, end_date):
-    return f"Zakres dat: {start_date.month}.{start_date.year} - {end_date.month}.{end_date.year}"
-
-
 def prepare_stats_table_data(start_date, end_date, additional_settings):
     earnings = get_data("HOME_EARNINGS", start_date, end_date).groupby("DATE").sum()["VALUE"]
     spendings = get_data("HOME_SPENDINGS", start_date, end_date).groupby("DATE").sum()["VALUE"]
