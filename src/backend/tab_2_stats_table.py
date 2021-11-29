@@ -1,3 +1,4 @@
+from utl.general import format_number
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
@@ -16,9 +17,6 @@ def prepare_stats_table_data(start_date, end_date, additional_settings):
     table_columns = ["none", "mean", "median", "deviation", "sum"]
 
     table_data = []
-
-    def format_number(number):
-        return f'{number:,.2f}'.replace(',', ' ') if number >= 1e4 else f'{number:.2f}'
 
     for item in budget_elements:
         values = budget_dict[item]

@@ -5,6 +5,7 @@ import callbacks.tab_1_make_charts
 import callbacks.tab_2_stats_table
 import callbacks.tab_3_collations
 import callbacks.tab_4_spendings_finder
+import callbacks.tab_5_balance
 
 
 if __name__ == '__main__':
