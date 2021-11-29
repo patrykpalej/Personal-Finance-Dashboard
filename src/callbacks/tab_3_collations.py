@@ -23,8 +23,8 @@ def set_time_range(sy, sm, ey, em):
 
 
 @app.callback(
-    [Output("3_collation_table_1", "children"),
-     Output("3_total_sum", "children")],
+    [Output("3_total_sum", "children"),
+     Output("3_collation_table_1", "children")],
 
     [Input("3_category_dropdown", "value"),
      State("1_start_year_dropdown", "value"),

@@ -4,6 +4,7 @@ import callbacks.tab_1_set_time_range
 import callbacks.tab_1_make_charts
 import callbacks.tab_2_stats_table
 import callbacks.tab_3_collations
+import callbacks.tab_4_spendings_finder
 
 
 if __name__ == '__main__':

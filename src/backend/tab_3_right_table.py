@@ -10,7 +10,7 @@ def fill_right_table(min_sum, start_date, end_date):
                  .sort_values("VALUE", ascending=False))
 
     spendings["DATE"] = spendings["DATE"].apply(lambda x: f'{month_dict[x.month]} {x.year}')
-    spendings["id"] = 1
+    spendings["id"] = range(1, len(spendings)+1)
     spendings.rename({"DESCRIPTION": "name", "VALUE": "value", "CATEGORY": "cat",
                       "DATE": "month"}, axis=1, inplace=True)
 
