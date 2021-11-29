@@ -35,3 +35,9 @@ with open("config/short_chart_names.json", "r") as f:
 
 with open("config/tax_info.json", "r") as f:
     tax_info = json.load(f)
+
+
+# OTHER
+month_dict = {1: "Styczeń", 2: "Luty", 3: "Marzec", 4: "Kwiecień", 5: "Maj", 6: "Czerwiec",
+              7: "Lipiec", 8: "Sierpień", 9: "Wrzesień", 10: "Październik", 11: "Listopad",
+              12: "Grudzień"}

@@ -1,4 +1,6 @@
 from dash import html
+
+from config import month_dict
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
@@ -21,11 +23,6 @@ def prepare_row(expense, value, category):
     return html.Tr([html.Td([expense], style={"border-bottom": "1px solid black"}),
                     html.Td([value], style={"border-bottom": "1px solid black"}),
                     html.Td([category], style={"border-bottom": "1px solid black"})])
-
-
-month_dict = {1: "Styczeń", 2: "Luty", 3: "Marzec", 4: "Kwiecień", 5: "Maj", 6: "Czerwiec",
-              7: "Lipiec", 8: "Sierpień", 9: "Wrzesień", 10: "Październik", 11: "Listopad",
-              12: "Grudzień"}
 
 
 def fill_left_table(categories, start_date, end_date):
