@@ -17,6 +17,36 @@ def update_plotnames_list(plots_group_name, sy, sm, ey, em):
 
 
 @app.callback(
+    Output("1_plot_types_1", "options"),
+
+    [Input("1_start_year_dropdown", "value"),
+     Input("1_start_month_dropdown", "value"),
+     Input("1_end_year_dropdown", "value"),
+     Input("1_end_month_dropdown", "value")]
+)
+def update_plotgroups_1(sy, sm, ey, em):
+    if all([sy, sm, ey, em]):
+        return [{'label': name, 'value': name} for name in long_chart_names.keys()]
+    else:
+        return []
+
+
+@app.callback(
+    Output("1_plot_types_2", "options"),
+
+    [Input("1_start_year_dropdown", "value"),
+     Input("1_start_month_dropdown", "value"),
+     Input("1_end_year_dropdown", "value"),
+     Input("1_end_month_dropdown", "value")]
+)
+def update_plotgroups_2(sy, sm, ey, em):
+    if all([sy, sm, ey, em]):
+        return [{'label': name, 'value': name} for name in long_chart_names.keys()]
+    else:
+        return []
+
+
+@app.callback(
     Output('1_plot_names_1', 'options'),
 
     [Input('1_plot_types_1', 'value'),
