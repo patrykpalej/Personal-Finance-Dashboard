@@ -50,9 +50,12 @@ def return_list_of_months_for_given_year(year):
     return unq_months
 
 
-def select_data_from_time_range_for_given_table(table_name, start_date, end_date):
+def select_data_from_time_range_for_given_table(table_name, start_date, end_date, where=None):
     select_query = f'''SELECT * FROM "{table_name}"
                        WHERE "DATE" >= '{start_date}' AND "DATE" <= '{end_date}' '''
+    if where is not None:
+        select_query += f"AND {where}"
+
     conn = make_connection(db_credentials)
     results = pd.read_sql(select_query, conn)
     conn.close()

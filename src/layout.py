@@ -16,7 +16,7 @@ def layout():
                            dcc.Tab(children=tab_2(), id="tab_2", value="tab2",
                                    label="Statystyki"),
                            dcc.Tab(children=tab_3(), id="tab_3", value="tab3",
-                                   label="Zestawienia"),
+                                   label="Zestawienia wydatków"),
                            dcc.Tab(children=tab_4(), id="tab_4", value="tab4",
                                    label="Wyszukiwarka"),
                            dcc.Tab(children=tab_5(), id="tab_5", value="tab5",
