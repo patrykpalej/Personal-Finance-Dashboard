@@ -36,6 +36,28 @@ with open("config/short_chart_names.json", "r") as f:
 with open("config/tax_info.json", "r") as f:
     tax_info = json.load(f)
 
+with open("config/spendings_metacategories.json", "r") as f:
+    metacategories_dict = json.load(f)
+
+
+# DB TABLES AD EXCEL DATA
+with open("config/db_tables/home_earnings.json", "r") as f:
+    home_earnings_config = json.load(f)
+
+with open("config/db_tables/home_incomes.json", "r") as f:
+    home_incomes_config = json.load(f)
+
+with open("config/db_tables/home_spendings.json", "r") as f:
+    home_spendings_config = json.load(f)
+
+with open("config/db_tables/home_longterm.json", "r") as f:
+    home_longterm_config = json.load(f)
+
+with open("config/db_tables/home_taxes.json", "r") as f:
+    home_taxes_config = json.load(f)
+
+with open("config/path_to_monthly_data.json", "r") as f:
+    path_to_monthly_data = json.load(f)[0]
 
 # OTHER
 month_dict = {1: "Styczeń", 2: "Luty", 3: "Marzec", 4: "Kwiecień", 5: "Maj", 6: "Czerwiec",
