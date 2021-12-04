@@ -5,7 +5,8 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 spendings_categories = get_data("home_spendings", '2000-01-01', '2099-12-31')["category"].unique()
-category_options = [{"label": str(cat), "value": str(cat)} for cat in spendings_categories]
+category_options = ([{"label": "WSZYSTKO", "value": "all"}]
+                    + [{"label": str(cat), "value": str(cat)} for cat in spendings_categories])
 
 
 def tab_4():

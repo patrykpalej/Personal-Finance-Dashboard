@@ -10,6 +10,9 @@ def make_a_search(spendings, search_phrase):
 
 def search_spendings(categories, search_phrase, start_date, end_date):
     categories_filter = f''' category in ({','.join(categories)})'''
+    if "'all'" in categories:
+        categories_filter += " OR 1=1"
+
     spendings = get_data("home_spendings", start_date, end_date, where=categories_filter)
     searched_results = make_a_search(spendings, search_phrase)
 
