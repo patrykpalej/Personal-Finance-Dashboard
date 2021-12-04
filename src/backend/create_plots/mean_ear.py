@@ -4,13 +4,13 @@ from utl.calculations import calculate_moving_average, calculate_cumulative_aver
 
 
 def mean_ear(start_date, end_date, additional_settings):
-    earnings_raw = get_data("HOME_EARNINGS", start_date, end_date)
-    earnings = earnings_raw.groupby("DATE").sum()["VALUE"]
+    earnings_raw = get_data("home_earnings", start_date, end_date)
+    earnings = earnings_raw.groupby("date").sum()["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
-        taxes["SUM"] = taxes["PIT"] + taxes["ZUS"] - taxes["VAT"]
-        earnings = earnings - taxes["SUM"]
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
+        taxes["sum"] = taxes["pit"] + taxes["zus"] - taxes["vat"]
+        earnings = earnings - taxes["sum"]
 
     ma_lag = 6
     moving_avg = calculate_moving_average(earnings, ma_lag)

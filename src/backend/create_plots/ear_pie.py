@@ -5,18 +5,18 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
 
 def ear_pie(start_date, end_date, additional_settings):
-    earnings_raw = get_data("HOME_EARNINGS", start_date, end_date)
-    earnings = earnings_raw.groupby(["DATE", "SOURCE"]).sum()["VALUE"]
+    earnings_raw = get_data("home_earnings", start_date, end_date)
+    earnings = earnings_raw.groupby(["date", "source"]).sum()["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
         earnings_minus_taxes = subtract_taxes_from_earnings(earnings, taxes)
-        top_earnings = earnings_minus_taxes.groupby("SOURCE").sum().sort_values(ascending=False)
+        top_earnings = earnings_minus_taxes.groupby("source").sum().sort_values(ascending=False)
     else:
-        top_earnings = earnings.groupby("SOURCE").sum().sort_values(ascending=False)
+        top_earnings = earnings.groupby("source").sum().sort_values(ascending=False)
 
     if "calc_per_month" in additional_settings:
-        n_of_months = calculate_n_of_uniuqe_months_based_on_range(earnings_raw["DATE"])
+        n_of_months = calculate_n_of_uniuqe_months_based_on_range(earnings_raw["date"])
         top_earnings = (top_earnings / n_of_months).apply(round, args=(2,))
 
     threshold_percentage = 0.04

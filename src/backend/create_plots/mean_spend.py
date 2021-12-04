@@ -4,8 +4,8 @@ from utl.calculations import calculate_moving_average, calculate_cumulative_aver
 
 
 def mean_spend(start_date, end_date, _):
-    spendings_raw = get_data("HOME_SPENDINGS", start_date, end_date)
-    spendings = spendings_raw.groupby("DATE").sum()["VALUE"]
+    spendings_raw = get_data("home_spendings", start_date, end_date)
+    spendings = spendings_raw.groupby("date").sum()["value"]
 
     ma_lag = 6
     moving_avg = calculate_moving_average(spendings, ma_lag)

@@ -5,14 +5,14 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 def fill_right_table(min_sum, start_date, end_date):
-    value_filter = f''' "VALUE" >= {min_sum} '''
-    spendings = (get_data("HOME_SPENDINGS", start_date, end_date, where=value_filter)
-                 .sort_values("VALUE", ascending=False))
+    value_filter = f''' value >= {min_sum} '''
+    spendings = (get_data("home_spendings", start_date, end_date, where=value_filter)
+                 .sort_values("value", ascending=False))
 
-    spendings["DATE"] = spendings["DATE"].apply(lambda x: f'{month_dict[x.month]} {x.year}')
+    spendings["date"] = spendings["date"].apply(lambda x: f'{month_dict[x.month]} {x.year}')
     spendings["id"] = range(1, len(spendings)+1)
-    spendings.rename({"DESCRIPTION": "name", "VALUE": "value", "CATEGORY": "cat",
-                      "DATE": "month"}, axis=1, inplace=True)
+    spendings.rename({"description": "name", "value": "value", "category": "cat",
+                      "date": "month"}, axis=1, inplace=True)
 
     return dash_table.DataTable(
         columns=[{"name": "id", "id": "id"}, {"name": "Nazwa", "id": "name"},

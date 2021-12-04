@@ -3,14 +3,14 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 def prepare_stats_table_data(start_date, end_date, additional_settings):
-    earnings = get_data("HOME_EARNINGS", start_date, end_date).groupby("DATE").sum()["VALUE"]
-    spendings = get_data("HOME_SPENDINGS", start_date, end_date).groupby("DATE").sum()["VALUE"]
-    longterm = get_data("HOME_LONG_TERM", start_date, end_date).groupby("DATE").sum()["VALUE"]
+    earnings = get_data("home_earnings", start_date, end_date).groupby("date").sum()["value"]
+    spendings = get_data("home_spendings", start_date, end_date).groupby("date").sum()["value"]
+    longterm = get_data("home_longterm", start_date, end_date).groupby("date").sum()["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
-        taxes["SUM"] = taxes["PIT"] + taxes["ZUS"] - taxes["VAT"]
-        earnings = earnings - taxes["SUM"]
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
+        taxes["sum"] = taxes["pit"] + taxes["zus"] - taxes["vat"]
+        earnings = earnings - taxes["sum"]
 
     budget_elements = ["Zarobki", "Wydatki", "Nadwyżki", "Inwestycje"]
     budget_dict = dict(zip(budget_elements, [earnings, spendings, earnings-spendings, longterm]))

@@ -35,16 +35,16 @@ def make_html_table(df):
     Used in tab_3 (left collation table) and tab_4 (spendings finder) to transform
     pandas dataframe to a html table grouped by date
     """
-    unique_dates = sorted(df["DATE"].unique())
-    monthly_sums = dict(zip(unique_dates, [sum(df[df["DATE"] == date_]["VALUE"])
+    unique_dates = sorted(df["date"].unique())
+    monthly_sums = dict(zip(unique_dates, [sum(df[df["date"] == date_]["value"])
                                            for date_ in unique_dates]))
 
     table_data = dict()
     for date_ in unique_dates:
-        single_month_spendings = df[df["DATE"] == date_]
+        single_month_spendings = df[df["date"] == date_]
 
         key = f"{month_dict[date_.month]} {date_.year} - {round(monthly_sums[date_], 2)} zł"
-        table_data[key] = [(row["DESCRIPTION"], row["VALUE"], row["CATEGORY"])
+        table_data[key] = [(row["description"], row["value"], row["category"])
                            for i, row in single_month_spendings.iterrows()]
 
     table_body = []

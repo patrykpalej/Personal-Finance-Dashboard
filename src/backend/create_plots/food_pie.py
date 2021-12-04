@@ -4,9 +4,9 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
 
 def food_pie(start_date, end_date, additional_settings):
-    spendings_raw = get_data("HOME_SPENDINGS", start_date, end_date)
-    spendings_food = spendings_raw[spendings_raw["CATEGORY"] == "Jedzenie"]
-    food_grouped = spendings_food.groupby("DESCRIPTION").sum()["VALUE"].sort_values(ascending=False)
+    spendings_raw = get_data("home_spendings", start_date, end_date)
+    spendings_food = spendings_raw[spendings_raw["category"] == "Jedzenie"]
+    food_grouped = spendings_food.groupby("description").sum()["value"].sort_values(ascending=False)
 
     threshold_percentage = 0.04
 
@@ -21,7 +21,7 @@ def food_pie(start_date, end_date, additional_settings):
             break
 
     if "calc_per_month" in additional_settings:
-        n_of_months = calculate_n_of_uniuqe_months_based_on_range(spendings_raw["DATE"])
+        n_of_months = calculate_n_of_uniuqe_months_based_on_range(spendings_raw["date"])
         values = [round(item / n_of_months, 2) for item in values]
 
     return make_pieplot(labels, values)

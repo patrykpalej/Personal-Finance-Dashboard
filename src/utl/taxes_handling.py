@@ -20,8 +20,8 @@ def subtract_taxes_from_earnings(earnings, taxes):
                 taxed_earnings[source] = value
 
         if taxed_earnings:
-            tax_info = taxes[taxes.index == date_][["PIT", "ZUS", "VAT"]]
-            total_tax_per_month = float(tax_info["PIT"] + tax_info["ZUS"] - tax_info["VAT"])
+            tax_info = taxes[taxes.index == date_][["pit", "zus", "vat"]]
+            total_tax_per_month = float(tax_info["pit"] + tax_info["zus"] - tax_info["vat"])
 
             for source, earning in taxed_earnings.items():
                 tax_per_source = total_tax_per_month * earning / (sum(taxed_earnings.values()))

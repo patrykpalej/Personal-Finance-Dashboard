@@ -4,14 +4,14 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 def ear_srcs(start_date, end_date, additional_settings):
-    earnings_raw = get_data("HOME_EARNINGS", start_date, end_date)
-    earnings = earnings_raw.groupby(["DATE", "SOURCE"]).sum()["VALUE"]
+    earnings_raw = get_data("home_earnings", start_date, end_date)
+    earnings = earnings_raw.groupby(["date", "source"]).sum()["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
         earnings = subtract_taxes_from_earnings(earnings, taxes)
 
-    ordered_sources = earnings_raw.groupby("SOURCE").sum()["VALUE"].sort_values(ascending=False)
+    ordered_sources = earnings_raw.groupby("source").sum()["value"].sort_values(ascending=False)
     threshold_percentage = 0.04
     top_sources = []
     for src, all_earnings_from_src in ordered_sources.iteritems():

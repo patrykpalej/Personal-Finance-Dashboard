@@ -4,19 +4,19 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 def cum_sums(start_date, end_date, additional_settings):
-    earnings_raw = get_data("HOME_EARNINGS", start_date, end_date)
-    earnings = earnings_raw.groupby("DATE").sum()["VALUE"]
+    earnings_raw = get_data("home_earnings", start_date, end_date)
+    earnings = earnings_raw.groupby("date").sum()["value"]
 
-    spendings_raw = get_data("HOME_SPENDINGS", start_date, end_date)
-    spendings = spendings_raw.groupby("DATE").sum()["VALUE"]
+    spendings_raw = get_data("home_spendings", start_date, end_date)
+    spendings = spendings_raw.groupby("date").sum()["value"]
 
-    longterm_raw = get_data("HOME_LONG_TERM", start_date, end_date)
-    longterm = longterm_raw.groupby("DATE").sum()["VALUE"]
+    longterm_raw = get_data("home_longterm", start_date, end_date)
+    longterm = longterm_raw.groupby("date").sum()["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("HOME_TAXES", start_date, end_date).groupby("DATE").sum()
-        taxes["SUM"] = taxes["PIT"] + taxes["ZUS"] - taxes["VAT"]
-        earnings = earnings - taxes["SUM"]
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
+        taxes["sum"] = taxes["pit"] + taxes["zus"] - taxes["vat"]
+        earnings = (earnings - taxes["sum"]).fillna(0)
 
     excess = earnings - spendings
 
