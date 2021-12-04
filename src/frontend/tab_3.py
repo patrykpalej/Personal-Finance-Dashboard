@@ -26,7 +26,7 @@ def tab_3():
                  style={"position": "absolute", "width": "20vw", "left": "45vw", "top": "14vh"}),
 
         html.Div([], id="3_collation_table_1",
-                 style={"position": "absolute", "width": "25vw", "left": "5vw", "top": "27vh",
+                 style={"position": "absolute", "width": "30vw", "left": "5vw", "top": "27vh",
                         "height": "70vh", "overflow": "scroll"}),
 
         html.Hr([], style={"width": "1px", "height": "75vh", "position": "absolute",

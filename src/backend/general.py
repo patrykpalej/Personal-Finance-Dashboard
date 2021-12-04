@@ -14,11 +14,14 @@ def prepare_html_table_h1(title):
 
 def prepare_html_table_h2():
     return html.Tr([html.Td(["Wydatek"],
-                            style={"background-color": "#bcc5f7", "text-align": "center"}),
+                            style={"background-color": "#bcc5f7", "text-align": "center",
+                                   "width": "12vw"}),
                     html.Td(["Kwota [PLN]"],
-                            style={"background-color": "#bcc5f7", "text-align": "center"}),
+                            style={"background-color": "#bcc5f7", "text-align": "center",
+                                   "width": "6vw"}),
                     html.Td(["Kategoria"],
-                            style={"background-color": "#bcc5f7", "text-align": "center"})])
+                            style={"background-color": "#bcc5f7", "text-align": "center",
+                                   "width": "12vw"})])
 
 
 def prepare_html_table_row(expense, value, category):
