@@ -56,6 +56,16 @@ with open("config/db_tables/home_longterm.json", "r") as f:
 with open("config/db_tables/home_taxes.json", "r") as f:
     home_taxes_config = json.load(f)
 
+with open("config/db_tables/hist_daily_exchange_rates.json", "r") as f:
+    hist_daily_exchange_rates_config = json.load(f)
+
+with open("config/db_tables/hist_daily_metals.json", "r") as f:
+    hist_daily_metals_config = json.load(f)
+
+with open("config/db_tables/hist_monthly_inflation.json", "r") as f:
+    hist_monthly_inflation_config = json.load(f)
+
+
 with open("config/path_to_monthly_data.json", "r") as f:
     path_to_monthly_data = json.load(f)[0]
 
