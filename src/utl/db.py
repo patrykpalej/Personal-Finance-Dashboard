@@ -1,7 +1,6 @@
 import psycopg2
 import pandas as pd
 from config import db_credentials
-from sqlalchemy import create_engine
 
 
 def make_connection(credentials: dict):
@@ -14,23 +13,6 @@ def make_connection(credentials: dict):
     try:
         conn = psycopg2.connect(**credentials)
         return conn
-    except Exception as e:
-        print(e)
-        return None
-
-
-def make_engine(credentials: dict):
-    """
-    Creates sqlalchemy.engine.base.Engine object based on credentials dictionary
-    Parameters
-    ----------
-    credentials: dict
-    """
-    try:
-        conn_str = (f"postgresql://{credentials['user']}:{credentials['password']}"
-                    f"@{credentials['host']}:{credentials['port']}/{credentials['dbname']}")
-        engine = create_engine(conn_str)
-        return engine
     except Exception as e:
         print(e)
         return None
