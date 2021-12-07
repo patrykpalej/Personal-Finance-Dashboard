@@ -2,6 +2,7 @@
 .idea
 config/
 scripts/
+*.ipynb
 
 ISSUES.md
 
