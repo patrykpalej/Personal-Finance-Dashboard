@@ -3,7 +3,7 @@
 config/
 scripts/
 *.ipynb
-_monthly_data/
+_monthly_data_/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
