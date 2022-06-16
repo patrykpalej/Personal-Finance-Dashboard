@@ -3,9 +3,7 @@
 config/
 scripts/
 *.ipynb
-
-ISSUES.md
-
+_monthly_data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
