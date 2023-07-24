@@ -2,6 +2,12 @@ from utl.general import format_number
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
+
+def mean_absolute_deviation(series):
+    mean_value = series.mean()
+    mad_value = np.mean(np.abs(series - mean_value))
+    return mad_value
+
 def prepare_stats_table_data(start_date, end_date, additional_settings):
     earnings = get_data("home_earnings", start_date, end_date).groupby("date").sum()["value"]
     spendings = get_data("home_spendings", start_date, end_date).groupby("date").sum()["value"]
@@ -21,7 +27,7 @@ def prepare_stats_table_data(start_date, end_date, additional_settings):
     for item in budget_elements:
         values = budget_dict[item]
         aggregations = [format_number(number)
-                        for number in [values.mean(), values.median(), values.mad(), values.sum()]]
+                        for number in [values.mean(), values.median(), mean_absolute_deviation(values), values.sum()]]
 
         table_data.append(dict(zip(table_columns, [item, *aggregations])))
 
