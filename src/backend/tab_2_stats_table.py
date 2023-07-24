@@ -1,3 +1,4 @@
+import numpy as np
 from utl.general import format_number
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
