@@ -4,7 +4,7 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 def meta_cats(start_date, end_date, _):
     spendings_raw = get_data("home_spendings", start_date, end_date)
-    spendings = spendings_raw.groupby(["metacategory", "date"]).sum()["value"]
+    spendings = spendings_raw.groupby(["metacategory", "date"]).sum(numeric_only=True)["value"]
 
     metacategories = list(spendings.index.levels[0].unique())
 

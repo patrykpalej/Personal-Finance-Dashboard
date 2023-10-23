@@ -6,14 +6,14 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
 def ear_pie(start_date, end_date, additional_settings):
     earnings_raw = get_data("home_earnings", start_date, end_date)
-    earnings = earnings_raw.groupby(["date", "source"]).sum()["value"]
+    earnings = earnings_raw.groupby(["date", "source"]).sum(numeric_only=True)["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum(numeric_only=True)
         earnings_minus_taxes = subtract_taxes_from_earnings(earnings, taxes)
-        top_earnings = earnings_minus_taxes.groupby("source").sum().sort_values(ascending=False)
+        top_earnings = earnings_minus_taxes.groupby("source").sum(numeric_only=True).sort_values(ascending=False)
     else:
-        top_earnings = earnings.groupby("source").sum().sort_values(ascending=False)
+        top_earnings = earnings.groupby("source").sum(numeric_only=True).sort_values(ascending=False)
 
     if "calc_per_month" in additional_settings:
         n_of_months = calculate_n_of_uniuqe_months_based_on_range(earnings_raw["date"])
@@ -21,7 +21,7 @@ def ear_pie(start_date, end_date, additional_settings):
 
     threshold_percentage = 0.04
     labels, values = [], []
-    for i, (source, value) in enumerate(top_earnings.iteritems()):
+    for i, (source, value) in enumerate(top_earnings.items()):
         if value >= threshold_percentage * sum(top_earnings):
             labels.append(source)
             values.append(round(value, 2))
