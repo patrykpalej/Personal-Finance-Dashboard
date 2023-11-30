@@ -9,5 +9,4 @@ import callbacks.tab_5_balance
 
 
 if __name__ == '__main__':
-    context = ('config/cloudflare.crt', 'config/cloudflare.key')
-    app.run_server(debug=True, port=2000, host='0.0.0.0')  #, ssl_context=context)
+    app.run_server(debug=True, port=2000, host='0.0.0.0')
