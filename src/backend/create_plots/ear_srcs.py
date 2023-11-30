@@ -5,16 +5,16 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 def ear_srcs(start_date, end_date, additional_settings):
     earnings_raw = get_data("home_earnings", start_date, end_date)
-    earnings = earnings_raw.groupby(["date", "source"]).sum()["value"]
+    earnings = earnings_raw.groupby(["date", "source"]).sum(numeric_only=True)["value"]
 
     if "subtract_tax" in additional_settings:
         taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
         earnings = subtract_taxes_from_earnings(earnings, taxes)
 
-    ordered_sources = earnings_raw.groupby("source").sum()["value"].sort_values(ascending=False)
+    ordered_sources = earnings_raw.groupby("source").sum(numeric_only=True)["value"].sort_values(ascending=False)
     threshold_percentage = 0.04
     top_sources = []
-    for src, all_earnings_from_src in ordered_sources.iteritems():
+    for src, all_earnings_from_src in ordered_sources.items():
         if all_earnings_from_src > threshold_percentage * sum(ordered_sources):
             top_sources.append(src)
         else:
@@ -25,7 +25,7 @@ def ear_srcs(start_date, end_date, additional_settings):
     earnings_matrix = [[0] * len(unq_dates) for _ in sources_labels]
     for d, date_ in enumerate(unq_dates):
         single_month_earnings = earnings.loc[date_]
-        for src_label, value in single_month_earnings.iteritems():
+        for src_label, value in single_month_earnings.items():
             if src_label in top_sources:
                 earnings_matrix[sources_labels.index(src_label)][d] += value
             else:

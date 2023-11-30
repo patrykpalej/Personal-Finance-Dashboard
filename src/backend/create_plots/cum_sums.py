@@ -5,16 +5,16 @@ from utl.db import select_data_from_time_range_for_given_table as get_data
 
 def cum_sums(start_date, end_date, additional_settings):
     earnings_raw = get_data("home_earnings", start_date, end_date)
-    earnings = earnings_raw.groupby("date").sum()["value"]
+    earnings = earnings_raw.groupby("date").sum(numeric_only=True)["value"]
 
     spendings_raw = get_data("home_spendings", start_date, end_date)
-    spendings = spendings_raw.groupby("date").sum()["value"]
+    spendings = spendings_raw.groupby("date").sum(numeric_only=True)["value"]
 
     longterm_raw = get_data("home_longterm", start_date, end_date)
-    longterm = longterm_raw.groupby("date").sum()["value"]
+    longterm = longterm_raw.groupby("date").sum(numeric_only=True)["value"]
 
     if "subtract_tax" in additional_settings:
-        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum()
+        taxes = get_data("home_taxes", start_date, end_date).groupby("date").sum(numeric_only=True)
         taxes["sum"] = taxes["pit"] + taxes["zus"] - taxes["vat"]
         earnings = (earnings - taxes["sum"]).fillna(0)
 

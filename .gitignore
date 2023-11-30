@@ -4,6 +4,7 @@ config/
 scripts/
 *.ipynb
 _monthly_data_/
+nohup.out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

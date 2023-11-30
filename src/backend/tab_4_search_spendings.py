@@ -1,11 +1,21 @@
+
 from dash import html
 
 from backend.general import make_html_table
+import re
 from utl.db import select_data_from_time_range_for_given_table as get_data
 
 
 def make_a_search(spendings, search_phrase):
-    return spendings[spendings["description"].apply(lambda x: search_phrase.lower() in x)]
+    """
+    Filters spendings based on search phrese
+
+    Initially ordinary search, currently regex
+    """
+    if search_phrase is None:
+        search_phrase = ""
+    # return spendings[spendings["description"].apply(lambda x: search_phrase.lower() in x.lower())]
+    return spendings[spendings["description"].apply(lambda x: bool(re.search(search_phrase.lower(), x.lower())))]
 
 
 def search_spendings(categories, search_phrase, start_date, end_date):

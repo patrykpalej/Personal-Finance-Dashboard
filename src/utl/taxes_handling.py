@@ -15,7 +15,7 @@ def subtract_taxes_from_earnings(earnings, taxes):
             continue
 
         taxed_earnings = dict()
-        for source, value in monthly_earnings.iteritems():
+        for source, value in monthly_earnings.items():
             if source in jdg_companies:
                 taxed_earnings[source] = value
 

@@ -6,12 +6,14 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 def food_pie(start_date, end_date, additional_settings):
     spendings_raw = get_data("home_spendings", start_date, end_date)
     spendings_food = spendings_raw[spendings_raw["category"] == "Jedzenie"]
-    food_grouped = spendings_food.groupby("description").sum()["value"].sort_values(ascending=False)
+    food_grouped = (spendings_food
+                    .groupby("description").sum(numeric_only=True)["value"]
+                    .sort_values(ascending=False))
 
     threshold_percentage = 0.04
 
     labels, values = [], []
-    for i, value in food_grouped.iteritems():
+    for i, value in food_grouped.items():
         if value > threshold_percentage * sum(food_grouped):
             labels.append(i)
             values.append(value)

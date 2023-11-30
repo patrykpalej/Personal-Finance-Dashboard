@@ -5,7 +5,7 @@ from utl.dates_handling import calculate_n_of_uniuqe_months_based_on_range
 
 def freq_pie(start_date, end_date, additional_settings):
     spendings_raw = get_data("home_spendings", start_date, end_date)
-    spendings = spendings_raw.groupby("category").sum()["value"].sort_values(ascending=False)
+    spendings = spendings_raw.groupby("category").sum(numeric_only=True)["value"].sort_values(ascending=False)
 
     n_of_main_categories = 4
 
